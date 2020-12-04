@@ -26,6 +26,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <DelaySign>false</DelaySign>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
