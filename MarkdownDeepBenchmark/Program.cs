@@ -5,6 +5,7 @@ using System.Text;
 using System.IO;
 using System.Diagnostics;
 using MarkdownDeep;
+using System.Reflection;
 
 namespace MarkdownDeepBenchmark
 {
@@ -23,30 +24,13 @@ namespace MarkdownDeepBenchmark
 		{
 			try
 			{
-				return File.ReadAllText(Path.Combine(ExecutingAssemblyPath, filename));
+				return File.ReadAllText(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), filename));
 			}
 			catch (FileNotFoundException)
 			{
 				return "";
 			}
 
-		}
-
-		/// <summary>
-		/// returns the root path of the currently executing assembly
-		/// </summary>
-		static private string ExecutingAssemblyPath
-		{
-			get
-			{
-				string path = System.Reflection.Assembly.GetExecutingAssembly().Location;
-				// removes executable part
-				path = Path.GetDirectoryName(path);
-				// we're typically in \bin\debug or bin\release so move up two folders
-				path = Path.Combine(path, "..");
-				path = Path.Combine(path, "..");
-				return path;
-			}
 		}
 
 		/// <summary>
